@@ -1,0 +1,46 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="grid h-full m-auto">
+    <div class="col-12">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-user"></i>
+        </span>
+        <input
+          pInputText
+          formControlName="userName"
+          placeholder="Username"
+          [style]="{ width: '100%' }"
+        />
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-key"></i>
+        </span>
+
+        <p-password
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+          formControlName="password"
+          placeholder="Password"
+          [toggleMask]="true"
+        >
+          <password-suggestion></password-suggestion>
+        </p-password>
+      </div>
+    </div>
+    <div class="col-6 m-auto">
+      <p-button
+        type="submit"
+        label="{{ registrationMode ? 'Registrate' : 'Login' }}"
+      ></p-button>
+    </div>
+    <div class="col-6 md:text-right text-right m-auto">
+      <p-inputSwitch
+        formControlName="registrationMode"
+        (onChange)="switchMode()"
+      ></p-inputSwitch>
+    </div>
+  </div>
+</form>
