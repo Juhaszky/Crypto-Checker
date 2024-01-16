@@ -11,7 +11,6 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordSuggestionComponent } from './password-suggestion/password-suggestion.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { LocalStorageService } from 'src/app/shared/local-storage.service';
 export interface LoginData {
   userName: string;
   password: string;
@@ -35,7 +34,7 @@ export class LoginFormComponent implements OnInit {
   loginForm!: FormGroup;
   registrationMode!: boolean;
   @Output() loginCertificate!: {userName: string, password: string};
-  constructor(private fb: FormBuilder, private localStorageService: LocalStorageService) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.loginForm = this.buildForm();
@@ -57,7 +56,7 @@ export class LoginFormComponent implements OnInit {
     if (this.registrationMode) {
       const formValues: LoginData = this.loginForm.value;
       this.loginCertificate = { userName: formValues.userName, password: formValues.password};
-      this.localStorageService.registrateUser(this.loginCertificate);
+     
       alert('sikeres regisztráció');
     } else {
       alert('Sikeres bejelentkezés')
